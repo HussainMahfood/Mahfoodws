@@ -1,0 +1,990 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Theme Variables */
+body[data-theme="dark"] {
+    --bg-color: #0d0d0d;
+    --text-color: #fff;
+    --secondary-text: #ccc;
+    --muted-text: #aaa;
+    --primary-color: #f0a500;
+    --border-color: #333;
+    --card-bg: #1a1a1a;
+    --card-bg-hover: rgba(240, 165, 0, 0.1);
+    --footer-text: #666;
+    --separator-color: #444;
+}
+
+body[data-theme="light"] {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --secondary-text: #555;
+    --muted-text: #777;
+    --primary-color: #f0a500;
+    --border-color: #ddd;
+    --card-bg: #ffffff;
+    --card-bg-hover: rgba(240, 165, 0, 0.1);
+    --footer-text: #888;
+    --separator-color: #ccc;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px; /* Add some padding for smaller screens */
+    padding-right: 15px;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: var(--bg-color); /* Ensure navbar background matches body */
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.navbar nav {
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    position: relative;
+}
+
+.navbar ul .separator {
+    color: var(--separator-color);
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Small dot under nav link on hover */
+.navbar ul li a::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    margin: 5px auto 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.navbar ul li a:hover::after {
+    opacity: 1;
+}
+
+/* Consult Button in Navbar */
+.navbar .btn-consult {
+    padding: 10px 25px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .btn-consult:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 40px;
+    position: relative; /* Needed for absolute positioned children like welcome-text */
+    gap: 40px; /* Add gap between content and image */
+}
+
+.hero-content {
+    flex: 1; /* Allow content to take available space */
+    max-width: 55%; /* Adjust max-width as needed */
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--card-bg); /* Semi-transparent background */
+}
+
+.hero-content .subtitle {
+    font-size: 14px;
+    color: var(--text-color); /* Changed from #f0a500 to white */
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    line-height: 1.2;
+    margin: 10px 0 20px 0; /* Adjusted margin */
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.hero-content .description {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--secondary-text);
+    /* max-width: 90%; Remove fixed max-width if flex handles sizing */
+}
+
+.cta-container {
+    margin-top: 20px; /* Reduced margin */
+    text-align: left;
+}
+
+.hero-content .btn-consult {
+    padding: 12px 25px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-content .btn-consult:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.hero-image {
+    flex-shrink: 0; /* Prevent image from shrinking */
+    width: 40%; /* Adjust width as needed */
+    max-width: 500px; /* Add max-width for large screens */
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block; /* Remove extra space below image */
+}
+
+/* Info Boxes Section */
+.info-boxes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow boxes to wrap on smaller screens */
+    padding: 0 40px 60px;
+    gap: 30px;
+    max-width: 1000px;
+    margin: -40px auto 60px auto; /* Overlap slightly with hero */
+    position: relative; /* Ensure boxes are above hero background if overlapping */
+    z-index: 2;
+}
+
+.info-boxes .box {
+    flex: 1;
+    min-width: 200px; /* Minimum width before wrapping */
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: var(--text-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.info-boxes .box.active {
+    border: 1px solid var(--primary-color);
+    background-color: var(--card-bg); /* Change from semi-transparent to solid background */
+    position: relative;
+    z-index: 3; /* Higher z-index to appear above particles */
+}
+
+/* Add highlight effect without transparency */
+.info-boxes .box.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 9px; /* 1px less than the box to stay inside */
+    background: linear-gradient(to bottom, 
+        rgba(240, 165, 0, 0.08),
+        transparent 30%);
+    pointer-events: none; /* Don't interfere with box interactions */
+}
+
+/* Top border highlight for active box */
+.info-boxes .box.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 0 0 3px 3px;
+}
+
+.info-boxes .box h3 {
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.info-boxes .box p {
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--muted-text);
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* General Section Styling */
+section {
+    padding: 80px 0; /* Use vertical padding, horizontal handled by .container */
+    margin-bottom: 60px;
+}
+
+section:last-of-type {
+     margin-bottom: 0;
+}
+
+.section-bg {
+    background-color: var(--card-bg);
+    margin-left: 40px; /* Keep horizontal margins for visual effect if desired */
+    margin-right: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    padding: 80px 40px; /* Padding inside the background element */
+}
+
+section h2 {
+    font-size: 36px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    text-align: left; /* Default align left */
+    margin-top: 0;
+}
+
+section h2 span {
+    /* Removed display: block; to keep spans on the same line */
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 18px;
+    color: var(--secondary-text);
+    margin-bottom: 50px; /* Increased margin */
+    text-align: left; /* Default align left */
+}
+
+/* About Section */
+#about { /* Target ID for consistency */
+    /* Uses default section padding */
+}
+
+.about-section .container {
+    /* Container handles max-width and centering */
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.skill-item {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.skill-item h3 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.skill-item p {
+    color: var(--muted-text);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Skills Section (Progress Bars) */
+#skills { /* Target ID */
+   /* Uses default section padding */
+}
+
+.progress-bars {
+    margin: 40px 0 0 0; /* Remove bottom margin */
+}
+
+.progress-item {
+    margin-bottom: 30px; /* Increased spacing */
+}
+
+.progress-item:last-child {
+    margin-bottom: 0;
+}
+
+.progress-item h4 {
+    color: var(--text-color);
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.progress-bar {
+    background-color: var(--card-bg);
+    height: 10px;
+    border-radius: 10px;
+    position: relative;
+    overflow: visible; /* Allows percentage to show outside */
+    border: 1px solid var(--border-color);
+}
+
+.progress-bar .progress {
+    background-color: var(--primary-color);
+    height: 100%;
+    border-radius: 10px;
+    width: 0%; /* Start at 0% for animation */
+    transition: width 2s ease-out; /* Changed from 0.5s to 2s for slower animation */
+}
+
+.progress-bar .percentage {
+    position: absolute;
+    right: 0;
+    top: -25px; /* Position above the bar */
+    color: var(--primary-color);
+    font-size: 14px; /* Slightly smaller */
+    font-weight: 600;
+}
+
+/* Timeline Section */
+#timeline { /* Target ID */
+   /* Uses default section padding */
+}
+
+.timeline {
+    margin: 50px 0;
+    position: relative;
+    padding-left: 50px; /* Overall padding for timeline content */
+}
+
+/* The vertical line */
+.timeline::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    left: 25px; /* Position line relative to the container */
+    top: 0;
+    background-color: var(--border-color);
+}
+
+.timeline-item {
+    padding-left: 50px; /* Space between line and content */
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* The year box */
+.timeline-year {
+    position: absolute;
+    left: -25px;
+    top: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: #0d0d0d; /* Fixed incorrect syntax, always dark text on gold background */
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.timeline-content {
+    background-color: var(--card-bg);
+    padding: 25px; /* Slightly smaller padding */
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    position: relative; /* For potential future ::before elements */
+}
+
+.timeline-content h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    font-size: 22px; /* Adjust size */
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    color: var(--muted-text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.timeline-content p:last-child {
+    margin-bottom: 0;
+}
+.timeline-content p strong {
+    color: var(--text-color); /* Make strong text slightly brighter */
+}
+
+/* Timeline "View More" Button */
+.timeline-more {
+    text-align: center;
+    margin-top: 40px; /* Increased margin */
+}
+
+/* Generic Button Styles (reuse where possible) */
+.btn-outline {
+    padding: 12px 25px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+/* Class to hide timeline items */
+.timeline-item.hidden {
+    display: none;
+}
+
+/* Testimonials Section */
+#testimonials { /* Target ID */
+    /* Uses default section padding */
+}
+
+.testimonial-logos {
+    display: grid;
+    /* Responsive grid: fills available space, min width 180px */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background-color: var(--card-bg);
+    padding: 20px 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    display: flex; /* Use flex for vertical alignment */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    min-height: 150px; /* Ensure cards have a minimum height */
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background-color: var(--card-bg-hover);
+    border-color: var(--primary-color);
+}
+
+/* Image styling is handled by inline style in HTML head for specificity */
+/* .testimonial-card img { ... } */
+
+.testimonial-card h3 {
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: auto; /* Push title towards bottom if needed */
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.testimonial-card:hover h3 {
+    color: var(--text-color);
+}
+
+.testimonial-card.more-card {
+    background-color: rgba(240, 165, 0, 0.05);
+    border: 1px dashed var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-card.more-card:hover {
+    background-color: rgba(240, 165, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.more-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.testimonial-card.more-card i {
+    font-size: 32px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.testimonial-card.more-card:hover i {
+    transform: rotate(90deg);
+    color: var(--text-color);
+}
+
+.testimonial-card.more-card h3 {
+    font-weight: 500;
+    letter-spacing: 0.7px;
+}
+
+@media (max-width: 576px) {
+    .testimonial-card.more-card i {
+        font-size: 28px;
+    }
+}
+
+/* Contact Section */
+#contact { /* Target ID */
+    /* Uses default section padding */
+     margin-bottom: 80px; /* More space before footer */
+}
+
+.contact-info {
+    margin-top: 40px;
+    text-align: left; /* Left alignment for contact info */
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 15px; /* Increased margin */
+}
+
+.contact-info p {
+    margin-bottom: 25px; /* Spacing for email */
+}
+
+.contact-info p a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px; /* Larger email */
+    transition: color 0.3s ease;
+}
+
+.contact-info p a:hover {
+    color: var(--primary-color);
+}
+
+.contact-info p a i {
+    font-size: 20px; /* Slightly larger icon */
+}
+
+.social-links {
+    display: flex;
+    justify-content: flex-start; /* Changed from center to left alignment */
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px; /* Space before resume button */
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Larger icon container */
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    font-size: 20px; /* Larger icons */
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+.resume-download {
+    margin-top: 30px;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 30px 40px 40px; /* Increased padding */
+    position: relative;
+    border-top: 1px solid var(--border-color); /* Subtle top border */
+    margin-top: 60px; /* Space above footer */
+}
+
+.site-footer p {
+    color: var(--footer-text);
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Large background text */
+.welcome-text {
+    position: absolute;
+    bottom: 10px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(50px, 15vw, 150px); /* Responsive font size */
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: -1; /* Behind content */
+    pointer-events: none; /* Prevent interaction */
+    line-height: 1;
+}
+
+body[data-theme="light"] .welcome-text {
+    color: rgba(0, 0, 0, 0.03);
+}
+
+/* Particle Network Animation */
+.particle-network {
+    position: fixed;
+    /* Keeps it fixed in the background */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    /* Or adjust height as needed */
+    pointer-events: none;
+    /* Allows clicks to pass through */
+    z-index: -1;
+    /* Puts it behind other content */
+    opacity: 0.3;
+    /* Default opacity (used for dark theme) */
+    transition: opacity 0.3s;
+    /* Smooth transition for opacity changes */
+}
+
+/* Style for light theme if you implement theme switching */
+[data-theme="light"] .particle-network {
+    opacity: 0.4;
+    filter: none;
+    /* Original CSS had this, might not be necessary */
+}
+
+/* Example theme setup (can be toggled via JS) */
+body[data-theme="dark"] {
+    /* Your dark theme styles are already set in the body styles */
+    --bg-primary: #0d0d0d;
+    --text-primary: #ffffff;
+}
+
+body[data-theme="light"] {
+    /* Light theme styles if needed in the future */
+    --bg-primary: #ffffff;
+    --text-primary: #333333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .navbar nav {
+        margin-right: 20px; /* Reduce space */
+    }
+    .navbar .btn-consult {
+        padding: 8px 18px; /* Smaller button */
+        font-size: 13px;
+    }
+
+    .hero-section {
+        padding: 60px 20px;
+        flex-direction: column; /* Stack hero content and image */
+        text-align: center;
+    }
+    .hero-content {
+        max-width: 100%; /* Full width on smaller screens */
+        text-align: center; /* Center text when stacked */
+    }
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .hero-content .description {
+         max-width: 90%; /* Limit width slightly */
+         margin-left: auto;
+         margin-right: auto;
+    }
+     .cta-container {
+        text-align: center;
+    }
+    .hero-image {
+        width: 80%; /* Adjust image width */
+        max-width: 400px;
+        margin-top: 30px;
+    }
+
+    .info-boxes {
+        margin-top: 40px; /* Adjust margin when hero stacks */
+        padding: 0 20px 40px;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+     .section-bg {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 60px 20px;
+    }
+
+    .timeline {
+        padding-left: 30px; /* Adjust padding */
+    }
+    .timeline::before {
+        left: 15px; /* Adjust line position */
+    }
+    .timeline-item {
+        padding-left: 40px; /* Adjust content padding */
+    }
+    .timeline-year {
+        left: -20px; /* Adjust year position */
+        width: 70px;
+        height: 30px;
+        font-size: 14px;
+    }
+     .timeline-content h3 {
+        font-size: 20px;
+    }
+
+    .testimonial-logos {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+    }
+
+    /* Ensure contact info stays left-aligned in mobile */
+    .contact-info {
+        text-align: left;
+    }
+    .social-links {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    /* Simple approach: Hide full nav, rely on consult button or direct scroll */
+    .navbar nav {
+        display: none;
+    }
+    /* Keep consult button visible */
+    .navbar .btn-consult {
+         /* Styles remain */
+    }
+
+    .skills-container {
+        grid-template-columns: 1fr; /* Stack skill items */
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+    .timeline::before {
+        left: 10px;
+    }
+     .timeline-item {
+        padding-left: 35px;
+    }
+    .timeline-year {
+        left: -15px;
+        width: 60px;
+        height: 28px;
+        font-size: 13px;
+    }
+    .timeline-content h3 {
+        font-size: 18px;
+    }
+    .timeline-content {
+        padding: 20px;
+    }
+    .testimonial-logos {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+     .hero-content h1 {
+        font-size: 32px;
+    }
+    .hero-content .description {
+        font-size: 15px;
+    }
+
+    .info-boxes .box {
+        min-width: 150px; /* Allow smaller boxes */
+        padding: 20px 15px;
+    }
+    .info-boxes .box h3 {
+        font-size: 28px;
+    }
+     .info-boxes .box p {
+        font-size: 14px;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+    .tagline {
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    .timeline {
+        padding-left: 15px;
+        margin-left: 10px; /* Add margin to the timeline container */
+    }
+    .timeline::before {
+        left: 5px;
+    }
+    .timeline-item {
+        padding-left: 25px;
+    }
+    .timeline-year {
+        left: -5px; /* Adjust from -10px to -5px to move away from the edge */
+        width: 50px;
+        height: 25px;
+        font-size: 12px;
+    }
+
+     .timeline-content h3 {
+        font-size: 17px;
+    }
+     .timeline-content p {
+        font-size: 14px;
+    }
+
+     .testimonial-logos {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 15px;
+    }
+     .testimonial-card {
+         min-height: 120px;
+     }
+     .testimonial-card h3 {
+        font-size: 14px;
+    }
+
+    .contact-info p a {
+        font-size: 16px;
+    }
+    .social-links a {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .btn-outline {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    .site-footer p {
+        font-size: 13px;
+    }
+}
