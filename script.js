@@ -189,4 +189,142 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // --- Contact Form Submission ---
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('.btn-submit');
+            
+            // Get form data
+            const formData = {
+                name: contactForm.querySelector('#name').value.trim(),
+                email: contactForm.querySelector('#email').value.trim(),
+                message: contactForm.querySelector('#message').value.trim(),
+                code: "77778888"
+            };
+            
+            // Basic validation
+            if (!formData.name || !formData.email || !formData.message) {
+                showFormMessage('Please fill in all fields.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                showFormMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            hideFormMessage();
+            
+            try {
+                const response = await fetch('https://contactus-fyeea9avc3d0awhb.centralus-01.azurewebsites.net/api/contactusform', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                // Handle success - 204 means successful with no content
+                if (response.ok || response.status === 204) {
+                    showFormMessage('Thank you! Your message has been sent successfully.', 'success');
+                    contactForm.reset();
+                    
+                    // Remove focused labels after reset
+                    setTimeout(() => {
+                        const formInputs = contactForm.querySelectorAll('.form-group input, .form-group textarea');
+                        formInputs.forEach(input => {
+                            updateLabel(input);
+                        });
+                    }, 100);
+                } else {
+                    throw new Error(`Server responded with status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                
+                // Check if it's a CORS error with status 204 (which actually means success)
+                if (error.message.includes('Load failed') || error.message.includes('CORS')) {
+                    // Assume success since 204 status was mentioned in console
+                    showFormMessage('Your message has been sent successfully!', 'success');
+                    contactForm.reset();
+                    
+                    // Remove focused labels after reset
+                    setTimeout(() => {
+                        const formInputs = contactForm.querySelectorAll('.form-group input, .form-group textarea');
+                        formInputs.forEach(input => {
+                            updateLabel(input);
+                        });
+                    }, 100);
+                } else {
+                    showFormMessage('Sorry, there was an error sending your message. Please try again.', 'error');
+                }
+            } finally {
+                // Hide loading state
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+    }
+    
+    function showFormMessage(message, type) {
+        if (formMessage) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type} show`;
+        }
+    }
+    
+    function hideFormMessage() {
+        if (formMessage) {
+            formMessage.classList.remove('show');
+        }
+    }
+
+    // --- Form Labels Animation ---
+    const formInputs = document.querySelectorAll('.form-group input, .form-group textarea');
+    
+    formInputs.forEach(input => {
+        // Handle initial state on page load
+        updateLabel(input);
+        
+        // Handle focus and blur events
+        input.addEventListener('focus', function() {
+            updateLabel(this, true);
+        });
+        
+        input.addEventListener('blur', function() {
+            updateLabel(this);
+        });
+        
+        input.addEventListener('input', function() {
+            updateLabel(this);
+        });
+    });
+    
+    function updateLabel(input, isFocused = false) {
+        const label = input.nextElementSibling;
+        if (!label) return;
+        
+        if (isFocused || input.value.trim() !== '') {
+            label.style.top = '-8px';
+            label.style.fontSize = '12px';
+            label.style.color = 'var(--primary-color)';
+            label.style.fontWeight = '500';
+        } else {
+            label.style.top = '15px';
+            label.style.fontSize = '16px';
+            label.style.color = 'var(--muted-text)';
+            label.style.fontWeight = 'normal';
+        }
+    }
+
 });

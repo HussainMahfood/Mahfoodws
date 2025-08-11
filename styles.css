@@ -647,19 +647,39 @@ section h2 span {
      margin-bottom: 80px; /* More space before footer */
 }
 
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 50px;
+    align-items: center; /* Center both sides vertically */
+}
+
 .contact-info {
-    margin-top: 40px;
-    text-align: left; /* Left alignment for contact info */
+    text-align: left;
+    padding-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+}
+
+.contact-tagline {
+    font-size: 18px;
+    color: var(--secondary-text);
+    margin-bottom: 40px;
+    line-height: 1.6;
+    max-width: 90%;
 }
 
 .contact-info h3 {
-    font-size: 24px;
+    font-size: 28px;
     color: var(--primary-color);
-    margin-bottom: 15px; /* Increased margin */
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .contact-info p {
-    margin-bottom: 25px; /* Spacing for email */
+    margin-bottom: 30px;
 }
 
 .contact-info p a {
@@ -667,8 +687,8 @@ section h2 span {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    font-size: 18px; /* Larger email */
+    gap: 12px;
+    font-size: 20px;
     transition: color 0.3s ease;
 }
 
@@ -677,39 +697,180 @@ section h2 span {
 }
 
 .contact-info p a i {
-    font-size: 20px; /* Slightly larger icon */
+    font-size: 22px;
 }
 
 .social-links {
     display: flex;
-    justify-content: flex-start; /* Changed from center to left alignment */
+    justify-content: flex-start;
     gap: 20px;
-    margin-top: 20px;
-    margin-bottom: 30px; /* Space before resume button */
+    margin-top: 25px;
+    margin-bottom: 35px;
 }
 
 .social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px; /* Larger icon container */
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: var(--card-bg);
     color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-    font-size: 20px; /* Larger icons */
+    border: 2px solid var(--primary-color);
+    font-size: 22px;
     transition: all 0.3s ease;
 }
 
 .social-links a:hover {
     background-color: var(--primary-color);
     color: var(--bg-color);
-    transform: scale(1.1); /* Slight zoom on hover */
+    transform: scale(1.1);
 }
 
 .resume-download {
-    margin-top: 30px;
+    margin-top: 35px;
+}
+
+.resume-download .btn-outline {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Contact Form */
+.contact-form {
+    padding-left: 20px;
+}
+
+.contact-form-wrapper {
+    background-color: var(--card-bg);
+    padding: 35px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px 10px 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group input:not(:placeholder-shown),
+.form-group textarea:not(:placeholder-shown) {
+    border-color: var(--primary-color);
+}
+
+.form-group label {
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    color: var(--muted-text);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    background-color: var(--card-bg);
+    padding: 0 5px;
+}
+
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -8px;
+    left: 8px;
+    font-size: 12px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px 25px;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+.btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading {
+    display: none;
+}
+
+.btn-submit.loading .btn-text {
+    display: none;
+}
+
+.btn-submit.loading .btn-loading {
+    display: inline-block;
+}
+
+.form-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.form-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-message.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #28a745;
+}
+
+.form-message.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #dc3545;
 }
 
 /* Footer */
@@ -858,10 +1019,28 @@ body[data-theme="light"] {
         gap: 20px;
     }
 
-    /* Ensure contact info stays left-aligned in mobile */
-    .contact-info {
-        text-align: left;
+    /* Contact form responsive */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        margin-top: 40px;
     }
+    
+    .contact-info {
+        padding-right: 0;
+        text-align: left;
+        justify-content: flex-start; /* Reset vertical centering on mobile */
+    }
+    
+    .contact-form {
+        padding-left: 0;
+    }
+    
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+
+    /* Ensure contact info stays left-aligned in mobile */
     .social-links {
         justify-content: flex-start;
     }
@@ -970,6 +1149,42 @@ body[data-theme="light"] {
      }
      .testimonial-card h3 {
         font-size: 14px;
+    }
+
+    /* Contact form mobile styles */
+    .contact-content {
+        gap: 40px;
+    }
+    
+    .contact-tagline {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+    
+    .contact-info h3 {
+        font-size: 24px;
+    }
+    
+    .contact-info p a {
+        font-size: 18px;
+    }
+    
+    .contact-info p a i {
+        font-size: 20px;
+    }
+    
+    .social-links a {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    
+    .contact-form-wrapper {
+        padding: 20px;
+    }
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
     }
 
     .contact-info p a {

@@ -435,19 +435,44 @@
     <section id="contact" class="contact-section">
         <div class="container">
             <h2>Contact <span>Me</span></h2>
-            <p>My skills match a wide range of projects, and I am always ready to take on new challenges.</p>
-            <div class="contact-info">
-                <h3>Hussain Mahfood</h3>
-                <p><a href="mailto:hussain@mahfood.ws"><i class="far fa-envelope"></i> hussain@mahfood.ws</a></p>
-                <div class="social-links">
-                    <a href="https://www.facebook.com/hussain.mahfood" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/hussain_mahfood/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/hussainmahfood" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.linkedin.com/in/hussain-mahfood" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://hussain-mahfood.zapier.app" aria-label="AI Bot"><i class="fas fa-robot"></i></a>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p class="contact-tagline">My skills match a wide range of projects, and I am always ready to take on new challenges.</p>
+                    <h3>Hussain Mahfood</h3>
+                    <p><a href="mailto:hussain@mahfood.ws"><i class="far fa-envelope"></i> hussain@mahfood.ws</a></p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/hussain.mahfood" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/hussain_mahfood/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/hussainmahfood" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/in/hussain-mahfood" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://hussain-mahfood.zapier.app" aria-label="AI Bot"><i class="fas fa-robot"></i></a>
+                    </div>
+                    <div class="resume-download">
+                         <a href="/personal-hotspot/files/resume.pdf" download class="btn-outline">Download Resume</a>
+                    </div>
                 </div>
-                <div class="resume-download">
-                     <a href="/personal-hotspot/files/resume.pdf" download class="btn-outline">Download Resume</a>
+                <div class="contact-form">
+                    <form id="contactForm" class="contact-form-wrapper">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading">
+                                <i class="fas fa-spinner fa-spin"></i> Sending...
+                            </span>
+                        </button>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
                 </div>
             </div>
         </div>
