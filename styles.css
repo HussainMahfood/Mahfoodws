@@ -156,9 +156,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 40px;
+    padding: 60px 40px;
     position: relative; /* Needed for absolute positioned children like welcome-text */
-    gap: 40px; /* Add gap between content and image */
+    gap: 30px; /* Add gap between content and image */
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .hero-content {
