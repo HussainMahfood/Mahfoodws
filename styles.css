@@ -159,8 +159,6 @@ body {
     padding: 60px 40px;
     position: relative; /* Needed for absolute positioned children like welcome-text */
     gap: 30px; /* Add gap between content and image */
-    max-width: 1600px;
-    margin: 0 auto;
 }
 
 .hero-content {
